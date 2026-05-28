@@ -29,29 +29,37 @@ jobs:
           ls src/
           echo "Build OK!"
 
-      # ❌ PASSO 3: IMPLEMENTE AQUI — Secrets Scanning com Gitleaks
-      # Dica: use a action oficial "gitleaks/gitleaks-action@v2"
-      - name: 🔑 Secrets Scanning
+      # ✅ PASSO 3: Secrets Scanning com Gitleaks (bloqueia se encontrar secrets)
+      - name: 🔑 Secrets Scanning - Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
 
-      # ❌ PASSO 4: IMPLEMENTE AQUI — SAST com Semgrep
-      # Dica: instale com "pip install semgrep" e rode "semgrep scan --config auto --error src/"
-      - name: 🔍 SAST - Semgrep
-        run: |
-          pip install semgrep --quiet
-          semgrep scan --config auto --error src/
-        
+      # ✅ PASSO 4: SAST com Semgrep (bloqueia se encontrar código inseguro)
+      - name: 🔍 Static Analysis SAST - Run Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          args: >
+            --config p/ci --error src/
 
-      # ❌ PASSO 5: IMPLEMENTE AQUI — SCA com Grype
-      # Dica: instale com "curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin"
-      # e rode "grype dir:. --fail-on medium"
-      - name: 📦 SCA - Grype§
+      # ✅ PASSO 5: SCA com Grype (bloqueia se encontrar vulnerabilidades médias ou maiores)
+      - name: 📦 SCA - Run Grype
         run: |
           curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
           grype dir:. --fail-on medium
+
+      # ✅ PASSO EXTRA 1: Verificação de CVEs conhecidos com OSV-Scanner
+      - name: 🛡️ CVE Check - Run OSV-Scanner
+        run: |
+          curl -sSfL https://github.com/google/osv-scanner/releases/latest/download/osv-scanner-linux-amd64 -o /usr/local/bin/osv-scanner
+          chmod +x /usr/local/bin/osv-scanner
+          osv-scanner --recursive src/ --fail-on=high
+
+      # ✅ PASSO EXTRA 2: DAST com OWASP ZAP
+      - name: 🧪 DAST - Teste Dinâmico com OWASP ZAP
+        run: |
+          docker run -t owasp/zap2docker-stable zap-baseline.py \
+            -t http://localhost:5000 -r zap_report.html
 
       # ✅ PASSO 6: Já está pronto — Deploy (só roda se tudo passar)
       - name: 🌐 Configurar GitHub Pages
