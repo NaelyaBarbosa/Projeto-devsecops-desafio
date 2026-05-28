@@ -26,8 +26,6 @@ Agora ela contém steps de segurança que bloqueiam automaticamente o fluxo em c
 -✅ **Secrets Scanning** com Gitleaks  
 -✅ **SAST** com Semgrep  
 -✅ **SCA** com Grype  
--✅ **Passo Extra 1**: CVE Check com OSV-Scanner  
--✅ **Passo Extra 2**: DAST com OWASP ZAP  
 -✅ **Deploy** com GitHub Pages  
 
 ---
@@ -53,15 +51,7 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
    Examina dependências externas em busca de vulnerabilidades.  
    👉 Bloqueia o pipeline se encontrar falhas médias ou maiores.
 
-6. **Passo Extra 1 — CVE Check (OSV-Scanner)**  
-   Consulta a base OSV para verificar se as dependências possuem CVEs conhecidos.  
-   👉 Bloqueia o pipeline se houver vulnerabilidades altas ou críticas.
-
-7. **Passo Extra 2 — DAST (OWASP ZAP)**  
-   Executa testes dinâmicos simulando ataques reais contra a aplicação em execução.  
-   👉 Bloqueia o pipeline se detectar falhas críticas.
-
-8. **Deploy Seguro (GitHub Pages)**  
+6. **Deploy Seguro (GitHub Pages)**  
    Só é realizado se todos os passos anteriores forem bem-sucedidos.  
    👉 Garante que apenas código seguro chegue ao ambiente de produção.
 
@@ -73,8 +63,6 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
 | Secrets Scanning | Gitleaks | Detecta credenciais expostas | ✔️ |
 | SAST | Semgrep | Analisa código fonte | ✔️ |
 | SCA | Grype | Verifica dependências vulneráveis | ✔️ |
-| Passo Extra 1 | OSV-Scanner | Confere CVEs conhecidos | ✔️ |
-| Passo Extra 2 | OWASP ZAP | Testes dinâmicos (DAST) | ✔️ |
 | Deploy | GitHub Pages | Publica aplicação segura | Só se tudo passar ✅ |
 
 ---
