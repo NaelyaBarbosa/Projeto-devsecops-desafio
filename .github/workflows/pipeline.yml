@@ -37,11 +37,10 @@ jobs:
 
       # ✅ PASSO 4: SAST com Semgrep (bloqueia se encontrar código inseguro)
       - name: 🔍 Static Analysis SAST - Run Semgrep
-        uses: returntocorp/semgrep-action@v1
-        with:
-          args: >
-            --config p/ci --error src/
-
+        run: |
+          pip install semgrep --quiet 
+          semgrep scan --config auto --error src/
+          
       # ✅ PASSO 5: SCA com Grype (bloqueia se encontrar vulnerabilidades médias ou maiores)
       - name: 📦 SCA - Run Grype
         run: |
