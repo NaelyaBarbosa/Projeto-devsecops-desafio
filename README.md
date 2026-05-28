@@ -69,4 +69,4 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
 
 ## URL de Produção
 
-👉 **[https://naelyabarbosa.github.io/gerenciador-de-tarefas](https://naelyabarbosa.github.io/gerenciador-de-tarefas)**  
+👉 **[https://naelyabarbosa.github.io/Projeto-DevSecOps-desafio/](https://naelyabarbosa.github.io/Projeto-DevSecOps-desafio/)**  
