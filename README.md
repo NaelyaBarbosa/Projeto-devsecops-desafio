@@ -50,47 +50,54 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
    Relaciona-se ao OWASP A02: Security Misconfiguration e A07: Identification and Authentication Failures.
 
    👉 **Objetivo da implantação da ferramenta**  
+
    Detectar automaticamente segredos expostos no repositório antes que cheguem ao ambiente de produção.
    Gitleaks é leve, rápido e altamente eficaz para identificar padrões de credenciais.
-   Bloqueia o pipeline se encontrar secrets.
+   Bloquear o pipeline se encontrar secrets.
    
    👉 **Correção da Vulnerabilidade**  
    
-   Exclusão das informações de credenciais sensíveis.    
+   Exclusão das informações de credenciais sensíveis que estavam expostas.    
 
 4. 🛡️ **SAST (Semgrep)**
    
    👉 **Descrição da vulnerabilidade identificada**  
 
    Código inseguro e más práticas de programação, como SQL Injection, XSS, uso inseguro de bibliotecas.
-   Relaciona-se diretamente ao OWASP A01: Broken Access Control, A03: Injection e A06: Vulnerable and Outdated Components.
+   Relaciona-se diretamente ao OWASP A01: Broken Access Control, A03: Injection e A04: Design Inseguro.
 
    👉 **Objetivo da implantação da ferramenta**  
 
    Realizar análise estática de código (SAST) para detectar padrões inseguros e violações de boas práticas de segurança.
-   Bloqueia o pipeline se houver linhas vulneráveis.
+   Bloquear o pipeline se houver linhas vulneráveis.
 
    👉 **Correção da Vulnerabilidade**  
 
-   Analisa o código fonte em busca de padrões inseguros.
-   Semgrep é altamente customizável, suporta múltiplas linguagens e possui regras prontas baseadas no OWASP Top 10.
+   Comando estava ausente e foi configurado.
    Além disso, permite criar regras específicas para o contexto da aplicação.
 
-6. 🐳 **SCA (Grype)**  
+5. 🐳 **SCA (Grype)**  
 
-   👉 **Descrição da vulnerabilidade identificada**  
-Vulnerabilidades em dependências e imagens Docker (CVEs em pacotes e bibliotecas). Relaciona-se ao OWASP A06: Vulnerable and Outdated Components.
+   👉 **Descrição da vulnerabilidade identificada**
+   
+   Vulnerabilidades em dependências e imagens Docker (CVEs em pacotes e bibliotecas).
+   Relaciona-se ao OWASP A06: Vulnerable and Outdated Components.
 
    👉 **Objetivo da implantação da ferramenta**  
-Fazer análise de segurança em imagens containerizadas e dependências antes do deploy.
 
+   Fazer análise de segurança em imagens containerizadas e dependências antes do deploy.
+   Verificar pacotes contra bancos de dados de vulnerabilidades (como NVD).
+   Bloquear o pipeline se encontrar falhas médias ou maiores.
+   
    👉 **Correção da Vulnerabilidade**  
-Grype é rápido, open source e se integra bem com pipelines que usam Docker/Kubernetes. Ele verifica pacotes contra bancos de dados de vulnerabilidades (como NVD).
-    
-   👉 Bloqueia o pipeline se encontrar falhas médias ou maiores.
 
-7. 🔐 **Deploy Seguro (GitHub Pages)**  
+   Comando estava ausente e foi configurado.
+   Grype é rápido, open source e se integra bem com pipelines que usam Docker/Kubernetes.
+
+6. 🔐 **Deploy Seguro (GitHub Pages)**
+   
    Só é realizado se todos os passos anteriores forem bem-sucedidos.  
+
    👉 Garante que apenas código seguro chegue ao ambiente de produção.
 
 ---
