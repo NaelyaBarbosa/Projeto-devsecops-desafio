@@ -1,19 +1,19 @@
-# Desafio DevSecOps — Gerenciador de Tarefas
+# 📦 Desafio DevSecOps — Gerenciador de Tarefas
 
-## Sobre o Projeto
+## 📂 Sobre o Projeto
 Este repositório faz parte do desafio prático do módulo de DevSecOps da ADA Tech.  
 O projeto estava com vulnerabilidades propositais e uma pipeline incompleta.  
 O objetivo era implementar a pipeline de segurança e corrigir as vulnerabilidades.
 
 ---
 
-## Estado atual
+## ✨ Estado atual 💡
 A pipeline foi **completamente implementada**.  
 Agora ela contém steps de segurança que bloqueiam automaticamente o fluxo em caso de falhas.
 
 ---
 
-## A missão era:
+## 📋 A missão era:
 - Implementar os steps de segurança no `pipeline.yml`  
 - Fazer a pipeline quebrar ao detectar os problemas  
 - Corrigir as vulnerabilidades encontradas  
@@ -22,7 +22,7 @@ Agora ela contém steps de segurança que bloqueiam automaticamente o fluxo em c
 
 ---
 
-## O que foi implementado
+## 🛠️ O que foi implementado
 -✅ **Secrets Scanning** com Gitleaks  
 -✅ **SAST** com Semgrep  
 -✅ **SCA** com Grype  
@@ -30,12 +30,12 @@ Agora ela contém steps de segurança que bloqueiam automaticamente o fluxo em c
 
 ---
 
-## Como a pipeline funciona
+## 🔎 Como a pipeline funciona
 A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam detectadas o mais cedo possível:
 
 1. 📌 **Checkout do Código**  
 
-   Baixa o repositório para o ambiente de execução.
+   Baixa o repositório para o ambiente de execução. Todos os arquivos do projeto são copiados para o ambiente da pipeline.
 
 2. 🧩 **Build da Aplicação**  
 
@@ -76,11 +76,11 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
    Comando estava ausente e foi configurado.
    Além disso, permite criar regras específicas para o contexto da aplicação.
 
-5. 🐳 **SCA (Grype)**  
+5. 🛑 **SCA (Grype)**  
 
    👉 **Descrição da vulnerabilidade identificada**
    
-   Vulnerabilidades em dependências e imagens Docker (CVEs em pacotes e bibliotecas).
+   Vulnerabilidades em dependências e imagens Docker (CVEs em pacotes e bibliotecas).  
    Relaciona-se ao OWASP A06: Vulnerable and Outdated Components.
 
    👉 **Objetivo da implantação da ferramenta**  
@@ -94,7 +94,7 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
    Comando estava ausente e foi configurado.
    Grype é rápido, open source e se integra bem com pipelines que usam Docker/Kubernetes.
 
-6. 🔐 **Deploy Seguro (GitHub Pages)**
+6. 🚀 **Deploy Seguro (GitHub Pages)**
    
    Só é realizado se todos os passos anteriores forem bem-sucedidos.  
 
@@ -102,7 +102,7 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
 
 ---
 
-## Checklist dos Steps
+## 🧾 Checklist dos Steps 👩‍💻
 | Step | Ferramenta | Função | Bloqueia Pipeline |
 |------|------------|--------|-------------------|
 | Secrets Scanning | Gitleaks | Detecta credenciais expostas | ✔️ |
@@ -112,6 +112,16 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
 
 ---
 
-## URL de Produção
+## 📚 Conclusão
+
+   Essa pipeline mostra como aplicar o conceito de DevSecOps na prática:  
+   - Automatizar segurança dentro do ciclo de vida do software.  
+   - Quebrar o build sempre que houver falhas.  
+   - Garantir que apenas código seguro chega à produção.  
+   Com isso, a startup passa a ter um processo moderno, confiável e seguro.  
+
+---
+
+## 🌐 URL de Produção 🧭
 
 👉 **[https://naelyabarbosa.github.io/Projeto-DevSecOps-desafio/](https://naelyabarbosa.github.io/Projeto-DevSecOps-desafio/)**  
