@@ -117,7 +117,8 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
    Essa pipeline mostra como aplicar o conceito de DevSecOps na prática:  
    - Automatizar segurança dentro do ciclo de vida do software.  
    - Quebrar o build sempre que houver falhas.  
-   - Garantir que apenas código seguro chega à produção.  
+   - Garantir que apenas código seguro chegue à produção.
+
    Com isso, a startup passa a ter um processo moderno, confiável e seguro.  
 
 ---
