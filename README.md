@@ -33,46 +33,63 @@ Agora ela contém steps de segurança que bloqueiam automaticamente o fluxo em c
 ## Como a pipeline funciona
 A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam detectadas o mais cedo possível:
 
-1. **Checkout do Código**  
+1. 📌 **Checkout do Código**  
 
    Baixa o repositório para o ambiente de execução.
 
-3. **Build da Aplicação**  
+2. 🧩 **Build da Aplicação**  
 
    Verifica a estrutura e prepara o código para análise.
 
-5. 🔑 **Secrets Scanning (Gitleaks)**  
+3. 🔑 **Secrets Scanning (Gitleaks)**  
     
-   👉 **Descrição da vulnerabilidade identificada**  
-   Vazamento de segredos e credenciais sensíveis no código (chaves de API, tokens, senhas hardcoded). Relaciona-se ao OWASP A05: Security Misconfiguration e A07: Identification and Authentication Failures.
+   👉 **Descrição da vulnerabilidade identificada**
+
+   API_KEY e DB_PASSWORD estavam escritos diretamente no script.js.
+   Vazamento de segredos e credenciais sensíveis no código (chaves de API, tokens, senhas hardcoded).
+   Relaciona-se ao OWASP A02: Security Misconfiguration e A07: Identification and Authentication Failures.
 
    👉 **Objetivo da implantação da ferramenta**  
    Detectar automaticamente segredos expostos no repositório antes que cheguem ao ambiente de produção.
-
-   👉 **Motivo da escolha da ferramenta**  
-   Gitleaks é leve, rápido e altamente eficaz para identificar padrões de credenciais. É amplamente usado em pipelines CI/CD e tem boa integração com GitHub Actions, GitLab CI e outros.   
-
-   👉 Bloqueia o pipeline se encontrar secrets.
-
-6. 🛡️ **SAST (Semgrep)**
+   Gitleaks é leve, rápido e altamente eficaz para identificar padrões de credenciais.
+   Bloqueia o pipeline se encontrar secrets.
    
-   👉 **Descrição da vulnerabilidade identificada**
-     
-   Código inseguro e más práticas de programação, como SQL Injection, XSS, uso inseguro de bibliotecas. Relaciona-se diretamente ao OWASP A01: Broken Access Control, A03: Injection e A06: Vulnerable and Outdated Components.
+   👉 **Correção da Vulnerabilidade**  
+   
+   Exclusão das informações de credenciais sensíveis.    
+
+4. 🛡️ **SAST (Semgrep)**
+   
+   👉 **Descrição da vulnerabilidade identificada**  
+
+   Código inseguro e más práticas de programação, como SQL Injection, XSS, uso inseguro de bibliotecas.
+   Relaciona-se diretamente ao OWASP A01: Broken Access Control, A03: Injection e A06: Vulnerable and Outdated Components.
 
    👉 **Objetivo da implantação da ferramenta**  
-Realizar análise estática de código (SAST) para detectar padrões inseguros e violações de boas práticas de segurança.
 
-   👉 **Motivo da escolha da ferramenta**  
-Semgrep é altamente customizável, suporta múltiplas linguagens e possui regras prontas baseadas no OWASP Top 10. Além disso, permite criar regras específicas para o contexto da aplicação.Analisa o código fonte em busca de padrões inseguros.
+   Realizar análise estática de código (SAST) para detectar padrões inseguros e violações de boas práticas de segurança.
+   Bloqueia o pipeline se houver linhas vulneráveis.
 
-   👉 Bloqueia o pipeline se houver linhas vulneráveis.
+   👉 **Correção da Vulnerabilidade**  
 
-7. **SCA (Grype)**  
-   Examina dependências externas em busca de vulnerabilidades.  
+   Analisa o código fonte em busca de padrões inseguros.
+   Semgrep é altamente customizável, suporta múltiplas linguagens e possui regras prontas baseadas no OWASP Top 10.
+   Além disso, permite criar regras específicas para o contexto da aplicação.
+
+6. 🐳 **SCA (Grype)**  
+
+   👉 **Descrição da vulnerabilidade identificada**  
+Vulnerabilidades em dependências e imagens Docker (CVEs em pacotes e bibliotecas). Relaciona-se ao OWASP A06: Vulnerable and Outdated Components.
+
+   👉 **Objetivo da implantação da ferramenta**  
+Fazer análise de segurança em imagens containerizadas e dependências antes do deploy.
+
+   👉 **Correção da Vulnerabilidade**  
+Grype é rápido, open source e se integra bem com pipelines que usam Docker/Kubernetes. Ele verifica pacotes contra bancos de dados de vulnerabilidades (como NVD).
+    
    👉 Bloqueia o pipeline se encontrar falhas médias ou maiores.
 
-8. **Deploy Seguro (GitHub Pages)**  
+7. 🔐 **Deploy Seguro (GitHub Pages)**  
    Só é realizado se todos os passos anteriores forem bem-sucedidos.  
    👉 Garante que apenas código seguro chegue ao ambiente de produção.
 
