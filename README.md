@@ -3,13 +3,7 @@
 ## 📂 Sobre o Projeto
 Este repositório faz parte do desafio prático do módulo de DevSecOps da ADA Tech.  
 O projeto estava com vulnerabilidades propositais e uma pipeline incompleta.  
-O objetivo era implementar a pipeline de segurança e corrigir as vulnerabilidades.
-
----
-
-## ✨ Estado atual 💡
-A pipeline foi **completamente implementada**.  
-Agora ela contém steps de segurança que bloqueiam automaticamente o fluxo em caso de falhas.
+O objetivo é implementar a pipeline de segurança e corrigir as vulnerabilidades.
 
 ---
 
@@ -27,6 +21,12 @@ Agora ela contém steps de segurança que bloqueiam automaticamente o fluxo em c
 -✅ **SAST** com Semgrep  
 -✅ **SCA** com Grype  
 -✅ **Deploy** com GitHub Pages  
+
+---
+
+## ✨ Estado atual 💡
+A pipeline foi **completamente implementada**.  
+Agora ela contém steps de segurança que bloqueiam automaticamente o fluxo em caso de identificação das falhas configuradas.
 
 ---
 
@@ -69,14 +69,14 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
    👉 **Objetivo da implantação da ferramenta**  
 
    Realizar análise estática de código (SAST) para detectar padrões inseguros e violações de boas práticas de segurança.  
-   Bloquear o pipeline se houver linhas vulneráveis.  
+   Bloquear o pipeline se houver linhas vulneráveis.
+   Além disso, permite criar regras específicas para o contexto da aplicação.  
 
    👉 **Correção da Vulnerabilidade**  
 
    Comando estava ausente e foi configurado.  
-   Além disso, permite criar regras específicas para o contexto da aplicação.  
-
-5. 🛑 **SCA (Grype)**  
+  
+6. 🛑 **SCA (Grype)**  
 
    👉 **Descrição da vulnerabilidade identificada**
    
@@ -92,9 +92,8 @@ A pipeline segue o conceito **shift-left security**, garantindo que falhas sejam
    👉 **Correção da Vulnerabilidade**  
 
    Comando estava ausente e foi configurado.  
-   Grype é rápido, open source e se integra bem com pipelines que usam Docker/Kubernetes.  
-
-6. 🚀 **Deploy Seguro (GitHub Pages)**
+   
+7. 🚀 **Deploy Seguro (GitHub Pages)**
    
    Só é realizado se todos os passos anteriores forem bem-sucedidos.  
 
