@@ -13,7 +13,7 @@ Agora ela contém steps de segurança que bloqueiam automaticamente o fluxo em c
 
 ---
 
-## 📋 A missão era:
+## 📋 A missão é:
 - Implementar os steps de segurança no `pipeline.yml`  
 - Fazer a pipeline quebrar ao detectar os problemas  
 - Corrigir as vulnerabilidades encontradas  
